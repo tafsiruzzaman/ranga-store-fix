@@ -9,27 +9,105 @@ loadProducts();
 
 // show all product in UI 
 const showProducts = (products) => {
-  console.log(products)
   const allProducts = products.map((pd) => pd);
   for (const product of allProducts) {
     const image = product.image;
+    let ratingIcon;
+    // condition for rating icon
+    if (product.rating.rate == 5) {
+      ratingIcon = `
+        <i class="text-warning fas fa-star"></i>
+        <i class="text-warning fas fa-star"></i>
+        <i class="text-warning fas fa-star"></i>
+        <i class="text-warning fas fa-star"></i>
+        <i class="text-warning fas fa-star"></i>
+      `;
+    }
+    else if(product.rating.rate > 4) {
+      ratingIcon = `
+        <i class="text-warning fas fa-star"></i>
+        <i class="text-warning fas fa-star"></i>
+        <i class="text-warning fas fa-star"></i>
+        <i class="text-warning fas fa-star"></i>
+        <i class="text-warning fas fa-star-half-alt"></i>
+      `;
+    }
+    else if(product.rating.rate == 4) {
+      ratingIcon = `
+        <i class="text-warning fas fa-star"></i>
+        <i class="text-warning fas fa-star"></i>
+        <i class="text-warning fas fa-star"></i>
+        <i class="text-warning fas fa-star"></i>
+        <i class="text-warning far fa-star"></i>
+      `;
+    }
+    else if(product.rating.rate > 3) {
+      ratingIcon = `
+        <i class="text-warning fas fa-star"></i>
+        <i class="text-warning fas fa-star"></i>
+        <i class="text-warning fas fa-star"></i>
+        <i class="text-warning fas fa-star-half-alt"></i>
+        <i class="text-warning far fa-star"></i>
+      `;
+    }
+    else if(product.rating.rate == 3) {
+      ratingIcon = `
+        <i class="text-warning fas fa-star"></i>
+        <i class="text-warning fas fa-star"></i>
+        <i class="text-warning fas fa-star"></i>
+        <i class="text-warning far fa-star"></i>
+        <i class="text-warning far fa-star"></i>
+      `;
+    }
+    else if(product.rating.rate > 2) {
+      ratingIcon = `
+        <i class="text-warning fas fa-star"></i>
+        <i class="text-warning fas fa-star"></i>
+        <i class="text-warning fas fa-star-half-alt"></i>
+        <i class="text-warning far fa-star"></i>
+        <i class="text-warning far fa-star"></i>
+      `;
+    }
+    else if(product.rating.rate == 2) {
+      ratingIcon = `
+        <i class="text-warning fas fa-star"></i>
+        <i class="text-warning fas fa-star"></i>
+        <i class="text-warning far fa-star"></i>
+        <i class="text-warning far fa-star"></i>
+        <i class="text-warning far fa-star"></i>
+      `;
+    }
+    else if(product.rating.rate > 1) {
+      ratingIcon = `
+        <i class="text-warning fas fa-star"></i>
+        <i class="text-warning fas fa-star-half-alt"></i>
+        <i class="text-warning far fa-star"></i>
+        <i class="text-warning far fa-star"></i>
+        <i class="text-warning far fa-star"></i>
+      `;
+    }
+    else if(product.rating.rate == 1) {
+      ratingIcon = `
+        <i class="text-warning fas fa-star"></i>
+        <i class="text-warning far fa-star"></i>
+        <i class="text-warning far fa-star"></i>
+        <i class="text-warning far fa-star"></i>
+        <i class="text-warning far fa-star"></i>
+      `;
+    }
+
     const div = document.createElement("div");
     div.classList.add("col");
     div.innerHTML = `
-    <div class="card h-100 shadow">
-      <img src="${image}" class="card-img-top h-50 w-50 mx-auto" alt="...">
-      <div class="card-body">
-      <h5 class="card-title">${product.title}</h5>
-      <p class="card-text">Category: ${product.category}</p>
-      <h3>Price: $ ${product.price}</h3>
+      <div class="card h-100 shadow">
+        <img src="${image}" class="card-img-top h-50 w-50 mx-auto" alt="...">
+        <div class="card-body">
+        <h5 class="card-title">${product.title}</h5>
+        <p class="card-text">Category: ${product.category}</p>
+        <h3>Price: $ ${product.price}</h3>
         <div>
           <small>
-            <i class="text-warning fas fa-star"></i>
-            <i class="text-warning fas fa-star"></i>
-            <i class="text-warning fas fa-star"></i>
-            <i class="text-warning fas fa-star"></i>
-            <i class="text-warning far fa-star"></i>
-            <i class="text-warning fas fa-star-half-alt"></i>
+            ${ratingIcon}
           </small>
           <span>${product.rating.rate} </span>
           <span>(${product.rating.count})</span>
@@ -38,9 +116,9 @@ const showProducts = (products) => {
             <button type="button" class="btn btn-warning">Details</button>
           </div>
         </div>
+        </div>
       </div>
-    </div>
-  `;
+    `;
     document.getElementById("all-products").appendChild(div);
   }
 };
