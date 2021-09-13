@@ -9,23 +9,38 @@ loadProducts();
 
 // show all product in UI 
 const showProducts = (products) => {
+  console.log(products)
   const allProducts = products.map((pd) => pd);
   for (const product of allProducts) {
     const image = product.image;
     const div = document.createElement("div");
-    div.classList.add("product");
+    div.classList.add("col");
     div.innerHTML = `
-      <div class="single-product">
+    <div class="card h-100 shadow">
+      <img src="${image}" class="card-img-top h-50 w-50 mx-auto" alt="...">
+      <div class="card-body">
+      <h5 class="card-title">${product.title}</h5>
+      <p class="card-text">Category: ${product.category}</p>
+      <h3>Price: $ ${product.price}</h3>
         <div>
-          <img class="product-image" src=${image}></img>
+          <small>
+            <i class="text-warning fas fa-star"></i>
+            <i class="text-warning fas fa-star"></i>
+            <i class="text-warning fas fa-star"></i>
+            <i class="text-warning fas fa-star"></i>
+            <i class="text-warning far fa-star"></i>
+            <i class="text-warning fas fa-star-half-alt"></i>
+          </small>
+          <span>${product.rating.rate} </span>
+          <span>(${product.rating.count})</span>
+          <div class="mt-3">
+            <button type="button" class="btn btn-info me-2" onclick="addToCart(${product.id},${product.price})">Add to cart</button>
+            <button type="button" class="btn btn-warning">Details</button>
+          </div>
         </div>
-        <h3>${product.title}</h3>
-        <p>Category: ${product.category}</p>
-        <h2>Price: $ ${product.price}</h2>
-        <button onclick="addToCart(${product.id},${product.price})" id="addToCart-btn" class="buy-now btn btn-success">add to cart</button>
-        <button id="details-btn" class="btn btn-danger">Details</button>
       </div>
-      `;
+    </div>
+  `;
     document.getElementById("all-products").appendChild(div);
   }
 };
