@@ -99,44 +99,23 @@ const showProducts = (products) => {
     const div = document.createElement("div");
     div.classList.add("col");
     div.innerHTML = `
-      <div class="card h-100 shadow">
+      <div class="card h-100 shadow card-color">
         <img src="${image}" class="card-img-top h-50 w-50 mx-auto" alt="...">
         <div class="card-body">
-        <h5 class="card-title">${product.title}</h5>
-        <p class="card-text">Category: ${product.category}</p>
-        <h3>Price: $ ${product.price}</h3>
-        <div>
-          <small>
-            ${ratingIcon}
-          </small>
-          <span>${product.rating.rate} </span>
-          <span>(${product.rating.count})</span>
-          <div class="mt-3">
-            <button type="button" class="btn btn-info me-2" onclick="addToCart(${product.id},${product.price})">Add to cart</button>
-            <!-- Button trigger modal -->
-            <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-              Details
-            </button>
-
-            <!-- Modal -->
-            <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-              <div class="modal-dialog">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h5 class="modal-title" id="staticBackdropLabel">Product Description</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                  </div>
-                  <div class="modal-body">
-                    ${product.description}
-                  </div>
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                  </div>
-                </div>
-              </div>
+          <h5 class="card-title">${product.title}</h5>
+          <p class="card-text">Category: ${product.category}</p>
+          <h3>Price: $ ${product.price}</h3>
+          <div>
+            <small>
+              ${ratingIcon}
+            </small>
+            <span>${product.rating.rate} </span>
+            <span>(${product.rating.count})</span>
+            <div class="mt-3">
+              <button type="button" class="btn btn-info me-2" onclick="addToCart(${product.id},${product.price})">Add to cart</button>
+              <button type="button" class="btn btn-warning me-2">Details</button>
             </div>
           </div>
-        </div>
         </div>
       </div>
     `;
@@ -193,4 +172,20 @@ const updateTaxAndCharge = () => {
 const updateTotal = () => {
   const grandTotal = getInputValue("price") + getInputValue("delivery-charge") + getInputValue("total-tax");
   document.getElementById("total").innerText = grandTotal.toFixed(2);
+};
+
+// extra
+
+const clearCart = () => {
+  const price = getInputValue("price");
+  if(price > 0) {
+    const confirmation = confirm('Alert: You are checking out. If you want to shopping more click on "cancel" button. Happy Shopping!');
+    if (confirmation === true) {
+      const email = prompt('Enter Your Email');
+      
+    }
+  }
+  else{
+    alert('Please add a few poduct in cart');
+  }
 };

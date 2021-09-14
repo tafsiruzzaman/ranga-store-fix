@@ -2,3 +2,7 @@ body {
   overflow-x: hidden;
   font-family: "Montserrat", sans-serif;
 }
+
+.card-color, .cart {
+  background-color: rgba(246, 249, 250, 0.822);
+}
