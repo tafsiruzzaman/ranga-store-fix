@@ -3,6 +3,10 @@ body {
   font-family: "Montserrat", sans-serif;
 }
 
-.card-color, .cart {
-  background-color: rgba(246, 249, 250, 0.822);
+.car-d, .cart {
+  background-color: #f7f7f7;
+}
+
+.car-d:hover {
+  border: 2px solid cyan;
 }
